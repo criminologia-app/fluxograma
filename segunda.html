@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLUXOGRAMA MONTEIROS | Painel de Gestão</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo"><img src="logo-monteiros.png" alt="Monteiros"></div>
+      <h2>FLUXOGRAMA</h2>
+      <span>MONTEIROS</span>
+    </div>
+    <nav class="menu" aria-label="Menu principal">
+      <button class="menu-btn active" data-target="sec-dashboard">📊 Painel Principal</button>
+      <button class="menu-btn" data-target="sec-faturas">🧾 Faturas e Recibos</button>
+      <button class="menu-btn" data-target="sec-telemetria">📡 Telemetria</button>
+      <button class="menu-btn" data-target="sec-manutencao">🔧 Trabalho de Manutenção</button>
+      <button class="menu-btn" data-target="sec-despesas">💼 Despesas da Empresa</button>
+      <button class="menu-btn" data-target="sec-engenheiro-alberto">👷 Eng. Alberto Monteiro</button>
+      <button class="menu-btn" data-target="sec-engenheiro-mateus">👷 Eng. Mateus VUBO</button>
+      <button class="menu-btn" data-target="sec-funcionarios">👥 Funcionários e Cargos</button>
+      <button class="menu-btn" data-target="sec-formacoes">🎓 Custo de Formações</button>
+      <button class="menu-btn" data-target="sec-backup">💾 Cópia de Segurança</button>
+      <button class="menu-btn" data-target="sec-faturas-proforma">📄 Proforma Print & Emitir</button>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="user-profile-container">
+        <span class="role-badge">ADMINISTRADORA / GESTORA</span>
+        <span class="admin-name" id="admin-name"></span>
+        <button class="btn-sm-edit" id="btn-alterar-admin" type="button" title="Alterar nome" aria-label="Alterar nome da administradora">✏️</button>
+      </div>
+    </header>
+
+    <section id="sec-dashboard" class="content-section active"><div id="dash"></div></section>
+
+    <section id="sec-faturas" class="content-section">
+      <h1>Faturas e Recibos</h1>
+      <p class="subtitle">Registo em tabela tipo Excel, com cálculo automático de IVA, totais e saldos, e imagem original de cada documento.</p>
+      <div id="p-faturas"></div>
+    </section>
+
+    <section id="sec-telemetria" class="content-section">
+      <h1>Telemetria</h1>
+      <p class="subtitle">Ligeiros, grupos geradores, camiões pesados e seguros — com fotografias e documentos em cada registo.</p>
+      <div id="p-telemetria"></div>
+    </section>
+
+    <section id="sec-manutencao" class="content-section">
+      <h1>Trabalho de Manutenção</h1>
+      <p class="subtitle">Técnico, local, data e hora, materiais comprados (quantidade e preço) e custo total da intervenção.</p>
+      <div id="p-manutencao"></div>
+    </section>
+
+    <section id="sec-despesas" class="content-section">
+      <h1>Despesas da Empresa</h1>
+      <p class="subtitle">Designação, técnico, quantidade, preço unitário e total.</p>
+      <div id="p-despesas"></div>
+    </section>
+
+    <section id="sec-engenheiro-alberto" class="content-section">
+      <h1>Engenheiro Alberto Monteiro</h1>
+      <p class="subtitle">Despesas atribuídas ao Eng. Alberto Monteiro.</p>
+      <div id="p-alberto"></div>
+    </section>
+
+    <section id="sec-engenheiro-mateus" class="content-section">
+      <h1>Engenheiro Mateus</h1>
+      <p class="subtitle">Despesas atribuídas ao Eng. Mateus.</p>
+      <div id="p-mateus"></div>
+    </section>
+
+    <section id="sec-funcionarios" class="content-section">
+      <h1>Funcionários e Cargos</h1>
+      <p class="subtitle">Ficha de cada funcionário, preenchida pela administradora, e gestão dos cargos.</p>
+      <div id="p-cargos"></div>
+      <div id="p-funcionarios"></div>
+    </section>
+
+    <section id="sec-formacoes" class="content-section">
+      <h1>Custo de Formações</h1>
+      <p class="subtitle">Despesas de formação dos funcionários, com o custo por participante.</p>
+      <div id="p-formacoes"></div>
+    </section>
+
+
+
+
+
+
+
+
+<!-- SECTION DE GERAÇÃO E IMPRESSÃO DE FATURAS PROFORMA -->
+<section id="sec-faturas-proforma" class="content-section">
+  <div class="pf-screen-only">
+    <div class="pf-header-title">
+      <h1>EMISSÃO DE FATURAS PROFORMA</h1>
+      <p class="subtitle">Selecione a empresa emissora (Monteiros ou ML VUBO), preencha os dados fiscais do cliente e itens para gerar o documento formal de impressão.</p>
+    </div>
+
+    <!-- SELETOR DE EMISSORA E DADOS GERAIS -->
+    <div class="form-card">
+      <h3>1. Configuração da Entidade Emissora e Documento</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="pf-empresa-emissora">Empresa Emissora *</label>
+          <select id="pf-empresa-emissora" class="pf-input-select">
+            <option value="MONTEIROS">MONTEIROS & MONTEIROS, LDA</option>
+            <option value="MLVUBO">ML VUBO — Comércio Geral & Serviços, LDA</option>
+            <option value="AMBAS">CONSÓRCIO MONTEIROS & ML VUBO</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="pf-doc-num">N.º da Fatura Proforma *</label>
+          <input type="text" id="pf-doc-num" placeholder="Ex: PP 2026/0158" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pf-doc-data">Data de Emissão *</label>
+          <input type="date" id="pf-doc-data" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pf-doc-validade">Validade da Proforma (Dias)</label>
+          <input type="number" id="pf-doc-validade" value="15" min="1">
+        </div>
+      </div>
+    </div>
+
+    <!-- DADOS DO CLIENTE -->
+    <div class="form-card">
+      <h3>2. Dados Fiscais do Cliente / Destinatário</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="pf-cli-nome">Nome / Razão Social do Cliente *</label>
+          <input type="text" id="pf-cli-nome" placeholder="Ex: Complexo Belo Horizonte / Empresa X" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pf-cli-nif">NIF / N.º de Contribuinte *</label>
+          <input type="text" id="pf-cli-nif" placeholder="Ex: 5000448958 ou Consumidor Final" value="Consumidor Final">
+        </div>
+
+        <div class="form-group full">
+          <label for="pf-cli-endereco">Endereço do Cliente</label>
+          <input type="text" id="pf-cli-endereco" placeholder="Ex: Rua dos Comandos, Luanda, Angola">
+        </div>
+      </div>
+    </div>
+
+    <!-- ITENS DA FATURA PROFORMA -->
+    <div class="form-card">
+      <h3>3. Artigos, Serviços e Mão de Obra</h3>
+      <div class="table-wrapper">
+        <table class="excel-table lines-table" id="pf-tbl-itens">
+          <thead>
+            <tr>
+              <th style="width: 12%;">Código</th>
+              <th>Descrição do Item / Serviço</th>
+              <th style="width: 10%;">Qtd</th>
+              <th style="width: 15%;">Preço Unit. (Kz)</th>
+              <th style="width: 10%;">% Desc</th>
+              <th style="width: 10%;">% IVA</th>
+              <th style="width: 15%;">Total Item</th>
+              <th style="width: 5%;">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="pf-tbody-itens">
+            <!-- Linhas inseridas via JS -->
+          </tbody>
+        </table>
+      </div>
+      <div class="toolbar" style="margin-top: 12px;">
+        <button type="button" class="btn-secondary" id="pf-btn-add-linha">+ Adicionar Item</button>
+      </div>
+
+      <div class="form-grid" style="margin-top: 16px;">
+        <div class="form-group">
+          <label for="pf-retencao-taxa">Retenção na Fonte (%)</label>
+          <select id="pf-retencao-taxa">
+            <option value="0">0% (Sem Retenção)</option>
+            <option value="6.5">6.5% (Prestação de Serviços)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pf-vendedor">Operador / Operadora</label>
+          <input type="text" id="pf-vendedor" placeholder="Nome do Responsável">
+        </div>
+      </div>
+
+      <div class="form-actions" style="margin-top: 20px;">
+        <button type="button" class="btn-primary" id="pf-btn-gerar" style="padding: 12px 24px; font-size: 1rem;">⚡ Atualizar e Visualizar Proforma</button>
+        <button type="button" class="btn-primary" id="pf-btn-imprimir" style="background-color: #059669; padding: 12px 24px; font-size: 1rem;">🖨️ Imprimir / Guardar PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENTO FORMAL PRÉ-PREPARADO PARA IMPRESSÃO (A4 FORMAL) -->
+  <div id="pf-print-document" class="pf-document-a4">
+    <!-- CABEÇALHO DUAL (MONTEIROS E ML VUBO) -->
+    <header class="pf-doc-header">
+      <div class="pf-doc-brand-area">
+        <div class="pf-logos-wrapper">
+          <img src="logo-monteiros.png" id="pf-img-monteiros" alt="Monteiros & Monteiros" class="pf-logo-img">
+          <img src="logo-mlvubo.jpeg" id="pf-img-mlvubo" alt="ML VUBO" class="pf-logo-img">
+        </div>
+        <div class="pf-company-info" id="pf-company-info-text">
+          <h2 id="pf-view-empresa-nome">MONTEIROS & MONTEIROS / ML VUBO</h2>
+          <p id="pf-view-empresa-desc">Comércio Geral, Manutenção Industrial & Prestação de Serviços, Lda</p>
+          <p><strong>NIF:</strong> <span id="pf-view-empresa-nif">5000448958</span> | Luanda — Angola</p>
+          <p><strong>Tel:</strong> +244 923 000 000 | <strong>E-mail:</strong> contacto@monteiros-vubo.ao</p>
+        </div>
+      </div>
+
+      <div class="pf-doc-meta-box">
+        <h1 class="pf-doc-title">FATURA PROFORMA</h1>
+        <div class="pf-meta-row"><strong>N.º Proforma:</strong> <span id="pf-out-num">PP 2026/001</span></div>
+        <div class="pf-meta-row"><strong>Data Emissão:</strong> <span id="pf-out-data">22/10/2026</span></div>
+        <div class="pf-meta-row"><strong>Validade:</strong> <span id="pf-out-validade">15 Dias</span></div>
+        <div class="pf-warning-stamp">ESTE DOCUMENTO NÃO SERVE DE FATURA</div>
+      </div>
+    </header>
+
+    <div class="pf-doc-divider"></div>
+
+    <!-- DADOS DO CLIENTE -->
+    <section class="pf-doc-client-section">
+      <div class="pf-client-card">
+        <div class="pf-client-title">EXMO.(S) SENHOR(ES) / CLIENTE:</div>
+        <div class="pf-client-name" id="pf-out-cli-nome">COMPLEXO BELO HORIZONTE</div>
+        <div><strong>NIF / Contribuinte:</strong> <span id="pf-out-cli-nif">CONSUMIDOR FINAL</span></div>
+        <div><strong>Endereço / Localidade:</strong> <span id="pf-out-cli-endereco">Luanda, Angola</span></div>
+      </div>
+    </section>
+
+    <!-- TABELA FORMAL DE PRODUTOS / SERVIÇOS -->
+    <table class="pf-doc-table">
+      <thead>
+        <tr>
+          <th style="width: 10%;">CÓD.</th>
+          <th>DESCRIÇÃO DOS SERVIÇOS / MATERIAL</th>
+          <th style="width: 8%; text-align: center;">QTD</th>
+          <th style="width: 16%; text-align: right;">P. UNIT (Kz)</th>
+          <th style="width: 10%; text-align: right;">DESC.</th>
+          <th style="width: 10%; text-align: right;">TAXA IVA</th>
+          <th style="width: 18%; text-align: right;">TOTAL (Kz)</th>
+        </tr>
+      </thead>
+      <tbody id="pf-out-tbody">
+        <!-- Preenchido dinamicamente -->
+      </tbody>
+    </table>
+
+    <!-- RESUMO FINANCEIRO E COORDENADAS BANCÁRIAS -->
+    <div class="pf-doc-footer-grid">
+      <div class="pf-bank-info">
+        <h4>DADOS BANCÁRIOS PARA PAGAMENTO</h4>
+        <p><strong>Banco:</strong> Banco Angolano de Investimentos (BAI)</p>
+        <p><strong>Conta:</strong> 143840110 10 001</p>
+        <p><strong>IBAN:</strong> AO06 0040 0000 4384 0110 1014 8</p>
+        <div class="pf-vendedor-line">
+          <span><strong>Operador(a):</strong> <span id="pf-out-vendedor">Administradora</span></span>
+        </div>
+      </div>
+
+      <div class="pf-totals-box">
+        <div class="pf-total-row">
+          <span>Valor Tributável (Subtotal):</span>
+          <strong id="pf-out-subtotal">0,00 Kz</strong>
+        </div>
+        <div class="pf-total-row">
+          <span>Total Descontos:</span>
+          <strong id="pf-out-desconto">0,00 Kz</strong>
+        </div>
+        <div class="pf-total-row">
+          <span>Total IVA (14%):</span>
+          <strong id="pf-out-iva">0,00 Kz</strong>
+        </div>
+        <div class="pf-total-row" id="pf-row-retencao">
+          <span>Retenção na Fonte:</span>
+          <strong id="pf-out-retencao">0,00 Kz</strong>
+        </div>
+        <div class="pf-total-row pf-grand-total">
+          <span>TOTAL A PAGAR (Kz):</span>
+          <strong id="pf-out-total-geral" class="total-red">0,00 Kz</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMOS E ASSINATURA -->
+    <div class="pf-doc-signatures">
+      <div class="pf-notes">
+        <p>• Prazo de validade desta proposta: <span id="pf-out-dias-val">15</span> dias após a data de emissão.</p>
+        <p>• Os bens/serviços prestados permanecem propriedade do emissor até à liquidação total do valor constante neste documento.</p>
+      </div>
+
+      <div class="pf-signature-box">
+        <div class="pf-sign-line"></div>
+        <p>A Gerência / Direção Técnica</p>
+        <p><strong>MONTEIROS & ML VUBO</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <section id="sec-backup" class="content-section"><div id="p-backup"></div></section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

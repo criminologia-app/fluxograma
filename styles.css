@@ -1,0 +1,1026 @@
+:root {
+    --bg-primary: #f4f6f9;
+    --bg-sidebar: #1e293b;
+    --text-sidebar: #cbd5e1;
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --accent-red: #dc2626;
+    /* Cor Vermelha para os Totais */
+    --border-color: #e2e8f0;
+    --card-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-primary);
+    color: #334155;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-sidebar);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    padding: 24px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+}
+
+.brand h2 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+    overflow-y: auto;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-sidebar);
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s;
+}
+
+.menu-btn:hover,
+.menu-btn.active {
+    background-color: #334155;
+    color: #ffffff;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Main Area */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 24px 32px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.role-badge {
+    background-color: #e2e8f0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #475569;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* Cards Dashboard */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.card h3 {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.card-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* VALOR TOTAL EM VERMELHO */
+.total-red {
+    color: var(--accent-red) !important;
+    font-weight: 800;
+}
+
+/* Tabela Estilo Excel */
+.table-wrapper {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.excel-table th,
+.excel-table td {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.excel-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #475569;
+}
+
+.table-total-row {
+    background-color: #ffeef0;
+}
+
+/* Utilitários */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Barra de Pesquisa */
+.search-bar-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-bar-container input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+/* Modais e Abas */
+.tabs-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab-btn {
+    padding: 10px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+:root {
+    --bg-primary: #f4f6f9;
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --accent-red: #dc2626;
+    /* Cor Vermelha para os Totais */
+    --border-color: #e2e8f0;
+    --card-bg: #ffffff;
+}
+
+/* Layout do Formulário */
+.form-card {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Tabela Estilo Excel */
+.table-wrapper {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.excel-table th,
+.excel-table td {
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.excel-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #475569;
+}
+
+.table-total-row {
+    background-color: #ffeef0;
+}
+
+.total-red {
+    color: var(--accent-red) !important;
+    font-weight: 800;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Botões */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background-color: #94a3b8;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-danger {
+    color: var(--accent-red);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Modal de Imagem */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    margin-top: 16px;
+    border-radius: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Ecrã Total de Recepção */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+/* Caixa com Borda Neon Rotativa */
+.welcome-card-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 750px;
+    height: 480px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+/* Animação do Neon em movimento contínuo */
+.neon-border-box {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent,
+            rgba(37, 99, 235, 0.2),
+            #2563eb,
+            #38bdf8,
+            transparent 40%);
+    animation: rotateNeon 6s linear infinite;
+}
+
+@keyframes rotateNeon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Conteúdo sobreposto à luz */
+.welcome-content {
+    position: absolute;
+    inset: 4px;
+    /* Espessura da borda neon */
+    background: #0f172a;
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+}
+
+.system-badge {
+    background: rgba(37, 99, 235, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.welcome-header h1 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+.highlight-blue {
+    color: #2563eb;
+}
+
+/* Área Central dos Logótipos */
+.logos-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 580px;
+    margin: 15px 0;
+}
+
+.logo-card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(51, 65, 85, 0.8);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.logo-card:hover {
+    transform: translateY(-3px);
+}
+
+.logo-monteiros:hover {
+    border-color: rgba(37, 99, 235, 0.8);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+}
+
+.logo-vubo:hover {
+    border-color: rgba(16, 185, 129, 0.8);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Fundo Branco de Suporte para Destacar Ambos os Logótipos */
+.img-wrapper {
+    width: 100%;
+    height: 95px;
+    background-color: #ffffff;
+    /* Garante que o fundo do logo ML VUBO se integre sem cortes */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+}
+
+.img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Impede que a imagem fique esticada ou deformada */
+    display: block;
+}
+
+.logo-title {
+    color: #f8fafc;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.logo-sub {
+    color: #94a3b8;
+    font-size: 0.7rem;
+    text-align: center;
+    margin-top: 2px;
+}
+
+/* Botão de Entrada */
+.welcome-footer p {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+
+.btn-enter {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.btn-enter:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: scale(1.02);
+}
+
+
+
+/* Perfil do Administrador na Topbar */
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.user-profile-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.admin-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 0.9rem;
+}
+
+.btn-sm-edit {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 4px;
+    transition: transform 0.2s;
+}
+
+.btn-sm-edit:hover {
+    transform: scale(1.2);
+}
+
+/* ═════════ Acrescentos: módulos, formulários, tabelas, anexos ═════════ */
+.welcome-body{display:block;overflow:hidden}
+.btn-enter{text-decoration:none}
+.brand-logo{width:72px;height:60px;margin:0 auto 10px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:6px}
+.brand-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.menu-btn{width:100%}
+.main-content h1{font-size:1.5rem;margin-bottom:4px;color:#0f172a}
+.role-badge{background:#e2e8f0;padding:4px 12px;border-radius:20px;font-weight:600;font-size:.75rem;color:#475569}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.toolbar .grow{flex:1;min-width:200px}
+.toolbar input,.toolbar select{padding:9px 12px;border:1px solid var(--border-color);border-radius:6px;font-size:.9rem;background:#fff}
+.toolbar label{font-size:.78rem;color:#64748b;display:flex;align-items:center;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group input,.form-group select,.form-group textarea{padding:10px;border:1px solid var(--border-color);border-radius:6px;font-size:.9rem;background:#fff;width:100%}
+.form-group textarea{resize:vertical}
+.form-group .hint{font-size:.75rem;color:#64748b}
+.form-group label.chk-one{display:flex;align-items:center;gap:8px;font-weight:500}
+.form-group label.chk-one input{width:auto}
+.form-card h3{font-size:1.05rem;color:#0f172a}
+.form-error{color:var(--accent-red);font-weight:600;font-size:.85rem;margin-top:12px;min-height:1em}
+.lines-table input{padding:7px 8px;border:1px solid var(--border-color);border-radius:4px;width:100%;min-width:90px}
+.lines-table .line-total{text-align:right;white-space:nowrap;font-weight:600;min-width:120px}
+.summary-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;background:#f8fafc;border:1px solid var(--border-color);padding:14px;border-radius:8px;margin-top:16px}
+.summary-box span{display:block;font-size:.75rem;color:#64748b}
+.summary-box b{font-size:1.05rem}
+.multi{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px;padding:10px;border:1px solid var(--border-color);border-radius:6px;background:#fff}
+.multi label.chk{display:flex;align-items:center;gap:8px;font-weight:500;font-size:.88rem}
+.multi input{width:auto}
+.att-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.thumb{position:relative;width:86px;height:86px;border:1px solid var(--border-color);border-radius:8px;overflow:hidden;background:#f8fafc;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#475569;cursor:pointer;padding:0}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .rm{position:absolute;top:2px;right:2px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(220,38,38,.92);color:#fff;cursor:pointer;font-weight:700;line-height:1}
+.excel-table thead th{position:sticky;top:0;background:#f1f5f9;cursor:pointer;white-space:nowrap;user-select:none}
+.excel-table tbody tr:nth-child(even){background:#fafbfd}
+.excel-table tbody tr:hover{background:#eff6ff}
+.excel-table td{vertical-align:middle}
+.excel-table .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.excel-table .rownum{color:#94a3b8;text-align:center;width:42px}
+.excel-table .row-actions{white-space:nowrap}
+.table-total-row td{font-weight:800;background:#ffeef0}
+.empty-row td{text-align:center;color:#94a3b8;padding:26px}
+.row-actions button{background:none;border:none;cursor:pointer;font-size:1rem;padding:2px 6px}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:700}
+.badge.ok{background:#dcfce7;color:#166534}.badge.warn{background:#fef3c7;color:#92400e}.badge.bad{background:#fee2e2;color:#991b1b}.badge.info{background:#dbeafe;color:#1e40af}.badge.neutral{background:#e2e8f0;color:#475569}
+.card-total{border:2px solid var(--accent-red);background:#fff5f5}
+.card-total .card-value{font-size:1.8rem}
+.cards-grid.mini{margin-bottom:16px}
+.muted{color:#64748b;font-size:.85rem}
+.section-title{font-size:1.05rem;margin:22px 0 10px;color:#0f172a}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#e0e7ff;color:#3730a3;padding:5px 12px;border-radius:20px;font-size:.85rem;font-weight:600}
+.chip button{background:none;border:none;cursor:pointer;color:#3730a3;font-weight:700}
+.alert-list{list-style:none;display:grid;gap:8px}
+.alert-list li{padding:10px 14px;border-radius:8px;background:#fff;border:1px solid var(--border-color);border-left:4px solid var(--accent-red);font-size:.9rem}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#0f172a;color:#fff;padding:12px 20px;border-radius:10px;font-size:.9rem;z-index:3000;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}.toast.bad{background:var(--accent-red)}
+.modal-content.wide{max-width:900px;max-height:92vh;overflow:auto}
+.modal .big{min-height:200px;margin:12px 0}
+.modal .big img{max-width:100%;max-height:60vh;margin:0 auto;display:block}
+.fatal{background:#fee2e2;color:#991b1b;padding:20px;border-radius:10px;margin:20px;font-weight:600}
+@media (max-width:900px){
+  body{flex-direction:column;height:auto;overflow:auto}
+  .sidebar{width:100%}.menu{flex-direction:row;flex-wrap:wrap;padding:6px}.menu-btn{width:auto;padding:10px 12px;font-size:.85rem}
+  .main-content{padding:16px;overflow:visible}
+}
+@media print{
+  .sidebar,.toolbar,.form-actions,.row-actions,.topbar,.btn-primary,.btn-secondary{display:none!important}
+  body{display:block;height:auto;overflow:visible;background:#fff}.main-content{padding:0;overflow:visible}
+  .content-section{display:none!important}.content-section.active{display:block!important}
+  .table-wrapper{overflow:visible;border:none;box-shadow:none}
+}
+
+.main-content p.muted{margin:0 0 16px}
+.main-content .cards-grid.mini + p.muted{margin-top:-4px}
+
+
+
+
+
+/* ==========================================================================
+   ESTILOS EXCLUSIVOS DA SECTION FATURA PROFORMA & IMPRESSÃO FISCAL
+   ========================================================================== */
+
+#sec-faturas-proforma {
+    display: none;
+}
+
+#sec-faturas-proforma.active {
+    display: block;
+}
+
+.pf-header-title {
+    margin-bottom: 20px;
+}
+
+.pf-input-select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+/* Documento A4 na Tela (Preview) */
+.pf-document-a4 {
+    background: #ffffff;
+    width: 100%;
+    max-width: 900px;
+    margin: 300px auto 30px auto;
+    padding: 32px 40px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    color: #0f172a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.88rem;
+}
+
+/* Cabeçalho do Documento */
+.pf-doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.pf-doc-brand-area {
+    flex: 1;
+}
+
+.pf-logos-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.pf-logo-img {
+    max-height: 60px;
+    max-width: 140px;
+    object-fit: contain;
+}
+
+.pf-company-info h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 2px;
+}
+
+.pf-company-info p {
+    font-size: 0.78rem;
+    color: #475569;
+    line-height: 1.35;
+}
+
+.pf-doc-meta-box {
+    width: 280px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: right;
+}
+
+.pf-doc-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 4px;
+}
+
+.pf-meta-row {
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+    color: #334155;
+}
+
+.pf-warning-stamp {
+    margin-top: 10px;
+    padding: 6px;
+    background-color: #fef2f2;
+    border: 1px dashed #ef4444;
+    color: #dc2626;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-align: center;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.pf-doc-divider {
+    height: 2px;
+    background: linear-gradient(90deg, #2563eb, #059669);
+    margin: 18px 0;
+}
+
+/* Área do Cliente */
+.pf-doc-client-section {
+    margin-bottom: 20px;
+}
+
+.pf-client-card {
+    background: #f1f5f9;
+    border-left: 4px solid #2563eb;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    line-height: 1.45;
+}
+
+.pf-client-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.pf-client-name {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+/* Tabela da Fatura Proforma */
+.pf-doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.82rem;
+}
+
+.pf-doc-table th {
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 8px 10px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.pf-doc-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1e293b;
+}
+
+.pf-doc-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Rodapé Financeiro e Bancário */
+.pf-doc-footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+    margin-top: 10px;
+    align-items: start;
+}
+
+.pf-bank-info {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 0.78rem;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.pf-bank-info h4 {
+    color: #1e293b;
+    font-size: 0.82rem;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 3px;
+}
+
+.pf-vendedor-line {
+    margin-top: 10px;
+    padding-top: 6px;
+    border-top: 1px dashed #cbd5e1;
+}
+
+.pf-totals-box {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.pf-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    margin-bottom: 6px;
+    color: #475569;
+}
+
+.pf-grand-total {
+    border-top: 2px solid #0f172a;
+    padding-top: 8px;
+    margin-top: 6px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+/* Assinaturas e Notas */
+.pf-doc-signatures {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+
+.pf-notes {
+    font-size: 0.72rem;
+    color: #64748b;
+    max-width: 55%;
+    line-height: 1.35;
+}
+
+.pf-signature-box {
+    text-align: center;
+    width: 220px;
+    font-size: 0.78rem;
+}
+
+.pf-sign-line {
+    border-bottom: 1px solid #0f172a;
+    margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   REGRAS DE IMPRESSÃO (A4 FISCAL PERFECT FIT)
+   ========================================================================== */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .sidebar,
+    .topbar,
+    .pf-screen-only,
+    .toolbar,
+    .menu,
+    .form-card,
+    header.dora-topbar,
+    aside {
+        display: none !important;
+    }
+
+    #pf-print-document,
+    #pf-print-document * {
+        visibility: visible;
+    }
+
+    #pf-print-document {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    @page {
+        size: A4 portrait;
+        margin: 12mm;
+    }
+}
